@@ -1,11 +1,11 @@
-# frozen_string_literal: true
+# encoding: ascii
 
 # Raises "bad ordering of magic comments"
 # frozen_string_literal: true
-# encoding: ascii
+# frozen_string_literal: true
 
 # Raises "use of deprecated BigDecimal.new"
-a = { 'hello' => 'world', 'testing' => BigDecimal.new(123.456, 3) }
+a = {"hello" => "world", "testing" => BigDecimal(123.456, 3)}
 
 # Raises "`while`/`until` detected in `begin` block"
 begin
@@ -13,8 +13,8 @@ begin
 end while a == b
 
 # Raises "multiple comparison detected"
-x < y < z
-10 <= x <= 20
+x < y && y < z
+10 <= x && x <= 20
 
 # Raises "empty rescue block detected"
 begin
@@ -24,12 +24,11 @@ end
 
 # Raises "redundant `else`-clause detected"
 if bar
-else
 end
 
 # Raises "unused method arguments detected"
 def some_method(bar)
-  puts 'Hello'
+  puts "Hello"
 end
 
 # Raises "unreachable code detected"
@@ -49,7 +48,7 @@ elsif x == 1
 end
 
 # Raises "Deprecated way of initializing OpenSSL::Cipher and OpenSSL::Digest"
-OpenSSL::Cipher::AES.new(128, :GCM)
+OpenSSL::Cipher.new("aes-128-gcm")
 
 # Raises "put empty method definitions on a single line"
 # Also raises "multiple methods with same name in the same scope" as we have a
@@ -68,8 +67,7 @@ end
 
 my_hash = {}
 # Raises "Hash merging can be replaced by hash key assignment"
-my_hash.merge!('key': value)
-
+my_hash.merge!(key: value)
 
 # Raises "Use `size` instead of `count`"
-[1, 2, 3].count
+[1, 2, 3].size
