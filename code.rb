@@ -5,18 +5,16 @@
 
 begin
   bar
-rescue
+rescue StandardError
 end
 
-def some_method(bar)
-  puts "Hello"
+def some_method(_bar)
+  puts 'Hello'
 end
 
-def some_method
-end
+def some_method; end
 
-def foo(bar)
-  # TODO Replace this with bar
+def foo(_bar)
+  # TODO: Replace this with bar
   do_something
 end
-
